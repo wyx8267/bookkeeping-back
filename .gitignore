@@ -29,3 +29,6 @@
 /config/master.key
 
 /config/credentials/production.key
+
+/vendor/cache
+/tmp/deploy_cache/*
