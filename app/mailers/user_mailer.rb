@@ -1,6 +1,7 @@
 class UserMailer < ApplicationMailer
-  def welcome_email(code)
-    @code = code
-    mail(to: '369264448@qq.com', subject: 'Ruby Rails Mail Test')
+  def welcome_email(email)
+    validation_code = ValidationCode.find_by_email(email)
+    @code = validation_code.code
+    mail(to: email, subject: '山竹记账验证码')
   end
 end
