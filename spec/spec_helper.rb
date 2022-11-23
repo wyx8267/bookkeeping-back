@@ -1,4 +1,5 @@
-require 'rspec_api_documentation'
+require "rspec_api_documentation"
+
 RspecApiDocumentation.configure do |config|
   config.request_body_formatter = :json
 end
@@ -6,8 +7,8 @@ end
 RSpec.configure do |config|
   config.before(:each) do |spec|
     if spec.metadata[:type].equal? :acceptance
-      header 'Accept', 'application/json'
-      header 'Content-Type', 'application/json'
+      header "Accept", "application/json"
+      header "Content-Type", "application/json"
     end
   end
   config.expect_with :rspec do |expectations|
