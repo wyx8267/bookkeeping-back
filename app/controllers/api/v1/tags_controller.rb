@@ -9,6 +9,7 @@ class Api::V1::TagsController < ApplicationController
       count: Tag.count
     }}
   end
+
   def create
     current_user_id = request.env['current_user_id']
     return render status: 401 if current_user_id.nil?
@@ -20,6 +21,7 @@ class Api::V1::TagsController < ApplicationController
       render json: {errors: tag.errors}, status: :unprocessable_entity
     end
   end
+
   def update
     current_user_id = request.env['current_user_id']
     return render status: 401 if current_user_id.nil?
@@ -28,6 +30,20 @@ class Api::V1::TagsController < ApplicationController
     tag.update params.permit(:name, :sign)
     if tag.errors.empty?
       render json: {resource: tag}, status: :ok
+    else
+      render json: {errors: tag.errors}, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    current_user_id = request.env['current_user_id']
+    return render status: 401 if current_user_id.nil?
+    
+    tag = Tag.find params[:id]
+    return head :forbidden unless tag.user_id === current_user_id
+    tag.deleted_at = Time.now
+    if tag.save
+      head 200
     else
       render json: {errors: tag.errors}, status: :unprocessable_entity
     end
