@@ -16,7 +16,7 @@ resource "标签" do
       response_field :deleted_at, "删除时间"
     end
     example "获取标签列表" do
-      11.times do Tag.create name: "x", sign: "x", user_id: current_user.id end
+      create :tag, 11, user: current_user
       do_request
       expect(status).to eq 200
       json = JSON.parse response_body
@@ -25,7 +25,7 @@ resource "标签" do
   end
 
   get "/api/v1/tags/:id" do
-    let (:tag) { Tag.create name: 'x', sign:'x', user_id: current_user.id }
+    let (:tag) { create :tag, user: current_user }
     let (:id) { tag.id }
     with_options :scope => :resource do
       response_field :id, "ID"
@@ -64,7 +64,7 @@ resource "标签" do
   end
 
   patch "/api/v1/tags/:id" do
-    let (:tag) { Tag.create name: 'x', sign:'x', user_id: current_user.id }
+    let (:tag) { create :tag, user: current_user }
     let (:id) { tag.id }
     parameter :name, "名称", required: true
     parameter :sign, "符号", required: true
@@ -87,7 +87,7 @@ resource "标签" do
   end
 
   delete "/api/v1/tags/:id" do
-    let (:tag) { Tag.create name: 'x', sign:'x', user_id: current_user.id }
+    let (:tag) { create :tag, user: current_user }
     let (:id) { tag.id }
     example "删除标签" do
       do_request
