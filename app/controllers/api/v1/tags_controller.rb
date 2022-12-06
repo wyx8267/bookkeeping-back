@@ -2,7 +2,8 @@ class Api::V1::TagsController < ApplicationController
   def index
     current_user_id = request.env["current_user_id"]
     return render status: 401 if current_user_id.nil?
-    tags = Tag.where({ user_id: current_user_id }).page(params[:page])
+    tags = Tag.where(user_id: current_user_id).page(params[:page])
+    tags = tags.where(kind: params[:kind]) unless params[:kind].nil?
     render json: { resources: tags, pager: {
       page: params[:page] || 1,
       per_page: Tag.default_per_page,
