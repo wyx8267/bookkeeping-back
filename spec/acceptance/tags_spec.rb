@@ -16,7 +16,7 @@ resource "标签" do
       response_field :deleted_at, "删除时间"
     end
     example "获取标签列表" do
-      create :tag, 11, user: current_user
+      create_list :tag, 11, user: current_user
       do_request
       expect(status).to eq 200
       json = JSON.parse response_body
