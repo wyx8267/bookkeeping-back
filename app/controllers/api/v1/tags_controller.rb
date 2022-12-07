@@ -40,14 +40,20 @@ class Api::V1::TagsController < ApplicationController
   def destroy
     current_user_id = request.env["current_user_id"]
     return render status: 401 if current_user_id.nil?
-
     tag = Tag.find params[:id]
     return head :forbidden unless tag.user_id == current_user_id
     tag.deleted_at = Time.now
-    if tag.save
+    ActiveRecord::Base.transaction do
+      begin
+        tag.save!
+        if params[:with_items]
+          Item.where('tag_ids && ARRAY[?]::bigint[]', [tag.id])
+            .update!(deleted_at: Time.now)
+        end
+      rescue
+        return head 422
+      end
       head 200
-    else
-      render json: { errors: tag.errors }, status: :unprocessable_entity
     end
   end
 
