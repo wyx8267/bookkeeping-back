@@ -137,6 +137,14 @@ table th, table td {
                   <span class="description">符号</span>
                 </td>
               </tr>
+              <tr>
+                <td class="required">
+                    <span class="name">kind</span>
+                </td>
+                <td>
+                  <span class="description">类型</span>
+                </td>
+              </tr>
             </tbody>
           </table>
 
@@ -196,7 +204,7 @@ table th, table td {
 
             <h4>Headers</h4>
             <pre class="request headers">Version: HTTP/1.0
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0MzAsImV4cCI6MTY3MDMyNjk2N30.0krg-o8GUb7jsjcMyMeKQVp_njs4nVLZpD7FpUWmVeQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMDIsImV4cCI6MTY3MDQwNTk0OH0.dPXbSmGYEpzX05SQBrraTUib--t6Zth2EEW_VIcU3yw
 Accept: application/json
 Content-Type: application/json
 Host: example.org
@@ -207,7 +215,7 @@ Cookie: </pre>
 
 
             <h4>Body</h4>
-            <pre class="request body">{"name":"x","sign":"x"}</pre>
+            <pre class="request body">{"name":"x","sign":"x","kind":"income"}</pre>
 
 
             <h3>Response</h3>
@@ -220,24 +228,24 @@ X-Permitted-Cross-Domain-Policies: none
 Referrer-Policy: strict-origin-when-cross-origin
 Content-Type: application/json; charset=utf-8
 Vary: Accept
-ETag: W/&quot;b0afc5115bed3b9ba94bf19308ce949b&quot;
+ETag: W/&quot;4ab3b4660d84a9c4495d8ca4f54d58ac&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: b8242646-6fc9-44df-8fd2-32521fa52866
-X-Runtime: 0.004893
-Content-Length: 175</pre>
+X-Request-Id: c386b87c-775a-4811-8793-3a5ef1e0fb77
+X-Runtime: 0.003868
+Content-Length: 173</pre>
             <h4>Status</h4>
             <pre class="response status">200 OK</pre>
               <h4>Body</h4>
               <pre class="response body">{
   &quot;resource&quot;: {
-    &quot;id&quot;: 831,
-    &quot;user_id&quot;: 430,
+    &quot;id&quot;: 543,
+    &quot;user_id&quot;: 202,
     &quot;name&quot;: &quot;x&quot;,
     &quot;sign&quot;: &quot;x&quot;,
     &quot;deleted_at&quot;: null,
-    &quot;created_at&quot;: &quot;2022-12-06T09:42:47.430Z&quot;,
-    &quot;updated_at&quot;: &quot;2022-12-06T09:42:47.430Z&quot;,
-    &quot;kind&quot;: &quot;expenses&quot;
+    &quot;created_at&quot;: &quot;2022-12-07T07:39:08.377Z&quot;,
+    &quot;updated_at&quot;: &quot;2022-12-07T07:39:08.377Z&quot;,
+    &quot;kind&quot;: &quot;income&quot;
   }
 }</pre>
       </div>
